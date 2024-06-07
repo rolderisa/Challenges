@@ -1,0 +1,113 @@
+/* Basic reset and font setup for the body */
+body {
+    margin: 0;
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    overflow: hidden; /* Prevents scrolling */
+}
+
+/* Flex container for the gallery images */
+.gallery {
+    display: flex;
+    flex-wrap: wrap; /* Allows images to wrap to next line if needed */
+    height: 100vh; /* Full viewport height */
+}
+
+/* Styling for each gallery image container */
+.gallery-images {
+    position: relative; /* Enables absolute positioning within it */
+    flex: 1; /* Flex-grow to fill available space */
+    min-width: 25%; /* Minimum width per image (4 images per row by default) */
+    background-size: cover; /* Background covers the entire container */
+    background-position: center; /* Centers the background image */
+    transition: transform 0.5s ease; /* Smooth transformation on hover */
+    display: flex;
+    align-items: flex-end; /* Aligns content to the bottom */
+    justify-content: flex-start; /* Aligns content to the left */
+}
+
+/* Details section within each image container */
+.gallery-images .details {
+    margin: 20px;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Adds shadow to text for readability */
+}
+
+/* Styling for the heading in the details section */
+.gallery-images h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Styling for the paragraph in the details section */
+.gallery-images p {
+    margin: 5px 0 0;
+    font-size: 15px;
+}
+
+/* Styling for the "Know More" link */
+.gallery-images .know-more {
+    display: none; /* Hidden by default */
+    color: rgb(0, 166, 255);
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+/* Scale effect on hover for the gallery images */
+.gallery-images:hover {
+    transform: scale(1.05); /* Slightly enlarges the image */
+}
+
+/* Display the "Know More" link on hover */
+.gallery-images:hover .know-more {
+    display: block;
+}
+
+/* Dark overlay effect on hover */
+.gallery-images::before {
+    content: ""; /* Adds a pseudo-element for the overlay */
+    position: absolute; /* Positioned absolutely within the gallery image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    transition: opacity 0.5s ease, filter 0.5s ease; /* Smooth transition for opacity and blur */
+    opacity: 0; /* Invisible by default */
+    filter: blur(0); /* No blur by default */
+    z-index: 1; /* Ensures it is above the image but below text */
+}
+
+/* Overlay becomes visible and blurred on hover */
+.gallery-images:hover::before {
+    opacity: 1; /* Makes the overlay visible */
+    filter: blur(5px); /* Applies blur effect */
+}
+
+/* Responsive styles for screens with max width of 768px */
+@media (max-width: 768px) {
+    .gallery-images {
+        min-width: 50%; /* Two images per row */
+    }
+}
+
+/* Responsive styles for screens with max width of 480px */
+@media (max-width: 480px) {
+    .gallery-images {
+        min-width: 100%; /* One image per row */
+    }
+}
+
+/* Additional responsive styles for screens with max width of 820px */
+@media (max-width: 820px) {
+    .gallery-images {
+        width: 100%; /* Full width for each image */
+    }
+    .details {
+        display: none; /* Hide details on mobile */
+    }
+}
